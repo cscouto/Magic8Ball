@@ -10,16 +10,32 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    //outlets
+    @IBOutlet weak var imgBall: UIImageView!
+    
+    //vars
+    var indexBall = 0
+    let ballArray = ["ball1","ball2","ball3","ball4","ball5"]
+    
+    //lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        updateBall()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
+        updateBall()
     }
-
+    
+    //actions
+    @IBAction func askQuestion(_ sender: Any) {
+        updateBall()
+    }
+    
+    //custom
+    func updateBall(){
+        indexBall = Int(arc4random_uniform(5))
+        imgBall.image =  UIImage(named: ballArray[indexBall])
+    }
 
 }
 
